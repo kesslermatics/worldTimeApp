@@ -10,7 +10,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     String bgImage = data["isDay"] ? "day.jpg" : "night.jpg";
     Color bgColor = data["isDay"] ? Colors.blue[300] : Colors.indigo[700];
     Color textColor = data["isDay"] ? Colors.grey[900] : Colors.white;
@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 190, 0, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -64,7 +64,20 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: iconBgColor,
-        onPressed: () {},
+        onPressed: () async {
+          dynamic result = await Navigator.pushNamed(
+            context,
+            "/location",
+          );
+          setState(() {
+            data = {
+              "location": result["location"],
+              "flag": result["flag"],
+              "time": result["time"],
+              "isDay": result["isDay"],
+            };
+          });
+        },
         child: Icon(
           Icons.edit_location,
           color: iconColor,
