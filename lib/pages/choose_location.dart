@@ -10,7 +10,10 @@ class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTime> locations = [
     WorldTime(url: "Europe/Berlin", location: "Berlin", flag: "germany.png"),
     WorldTime(
-        url: "America/Los_Angeles", location: "Los_Angeles", flag: "usa.png"),
+        url: "America/Los_Angeles", location: "Los Angeles", flag: "usa.png"),
+    WorldTime(url: "Asia/Tokyo", location: "Tokio", flag: "japan.png"),
+    WorldTime(
+        url: "Australia/Sydney", location: "Sydney", flag: "australia.png"),
   ];
 
   void updateTime(index) async {
